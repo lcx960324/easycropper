@@ -5,6 +5,8 @@ var containerCanvas = document.createElement('canvas')
 var containerContext = containerCanvas.getContext('2d')
 var targetCanvas = document.getElementById('target-cvs')
 var targetContext = targetCanvas.getContext('2d')
+var cropper = document.getElementById('cropper')
+var marquee = document.getElementById('marquee')
 
 image.onload = function () {
     sourceCanvas.width = image.width > 100 ? image.width : 100
@@ -12,6 +14,30 @@ image.onload = function () {
     targetCanvas.width = 100
     targetCanvas.height = 100
     sourceContext.drawImage(image, 0, 0, image.width, image.height)
+    var dragging = false
+    var startPosition = {}
+    marquee.addEventListener('mousedown', function (e) {
+        dragging = true
+        startPosition.x = e.clientX
+        startPosition.y = e.clientY
+    })
+    marquee.addEventListener('mouseup', function (e) {
+        dragging = false
+        startPosition = {}
+        console.log('mouseup')
+    })
+    marquee.addEventListener('mouseleave', function (e) {
+        dragging = false
+        startPosition = {}
+    })
+    marquee.addEventListener('mousemove', function (e) {
+        if (dragging) {
+            marquee.style.left = (e.clientX - cropper.offsetLeft - startPosition.x) + 'px'
+            marquee.style.top = (e.clientY - cropper.offsetTop - startPosition.y) + 'px'
+            cropImage(0, 0, 100, 100)
+        }
+
+    })
     cropImage(0, 0, 100, 100)
 }
 function cropImage (sx, sy, ex, ey) {    

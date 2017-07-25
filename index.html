@@ -8,9 +8,12 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="file" id="file-selector"></input>
-    <div class="containter">
-        <canvas id="source-cvs"></canvas>
+    <div class="selector"><input type="file" id="file-selector"></input></div>
+    <div class="container">
+        <div class="cropper" id="cropper">
+            <div class="marquee" id="marquee"></div>                        
+            <canvas id="source-cvs"></canvas>
+        </div>
         <canvas id="target-cvs"></canvas>
     </div>
     <script src="main.js"></script>
