@@ -1,0 +1,20 @@
+.selector {
+    height: 40px;
+    line-height: 40px;
+}
+.container {
+    position: absolute;
+}
+.cropper {
+    min-height: 100px;
+    border: 2px dashed #ddd;
+}
+.marquee {
+    position: absolute;
+    border: 2px solid #000;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    cursor: move;
+}
