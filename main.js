@@ -24,7 +24,6 @@ image.onload = function () {
     marquee.addEventListener('mouseup', function (e) {
         dragging = false
         startPosition = {}
-        console.log('mouseup')
     })
     marquee.addEventListener('mouseleave', function (e) {
         dragging = false
@@ -34,7 +33,9 @@ image.onload = function () {
         if (dragging) {
             marquee.style.left = (e.clientX - cropper.offsetLeft - startPosition.x) + 'px'
             marquee.style.top = (e.clientY - cropper.offsetTop - startPosition.y) + 'px'
-            cropImage(0, 0, 100, 100)
+            var offsetX = marquee.offsetLeft - cropper.offsetLeft
+            var offsetY = marquee.offsetTop - cropper.offsetTop
+            cropImage(offsetX, offsetY, offsetX + 100, offsetY + 100)
         }
 
     })
